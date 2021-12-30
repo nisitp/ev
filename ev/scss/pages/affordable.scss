@@ -1,0 +1,171 @@
+// affordable.scss
+// August 30, 2016
+// Alexander Rhett Crammer
+// Hot Sauce
+@import "../init";
+
+.affordable {
+  .main-header h1 {
+    @include breakpoint($below-thin) {
+      font-size: 28px;
+    }
+  }
+
+  p {
+    color: $text-grey;
+  }
+}
+
+.content-block-1.gas-price-cta {
+  @extend %minimal-links;
+  padding: 60px 0 !important;
+
+  > div {
+    margin-top: 0;
+
+    @include breakpoint($thin) {
+      display: table;
+    }
+
+    > div {
+      padding: 0;
+
+      @include breakpoint($thin) {
+        display: table-cell;
+        float: none;
+      }
+    }
+
+    > div:last-of-type {
+      padding-top: 0;
+      padding-bottom: 0;
+      position: relative;
+      vertical-align: bottom;
+
+      @include breakpoint($below-thin) {
+        height: 385px;
+        margin-left: 0;
+      }
+
+      img {
+        display: block;
+        margin: 0;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        max-width: none;
+        width: 100%;
+
+        @include breakpoint($thin) {
+          width: 360px;
+        }
+
+        @include breakpoint($regular) {
+          top: -40px;
+          width: 465px;
+        }
+      }
+    }
+  }
+}
+
+.content-block-1.time-saving-tools {
+  @extend %minimal-links;
+  color: $text-grey;
+  padding: 0 0 70px !important;
+}
+
+.content-block-3.layout-1.ways-you-save {
+  padding: 70px 0 !important;
+}
+
+.content-block-3.layout-1.time-worth {
+  padding: 0 0 40px !important;
+
+  @include breakpoint($thin) {
+    padding-top: 0;
+  }
+
+  > div {
+    padding: 30px 0 !important;
+    text-align: left;
+
+    > div {
+      @include breakpoint($thin) {
+        padding: 17.5px;
+      }
+
+      h3 {
+        padding-top: 15px;
+
+        @include breakpoint($thin) {
+          padding-bottom: 15px;
+          text-align: center;
+        }
+      }
+
+      &:last-of-type {
+        padding-top: 0;
+
+        @include breakpoint($thin) {
+          text-align: center;
+        }
+      }
+    }
+  }
+
+  p {
+    margin: 15px 0 0;
+  }
+
+  a {
+    letter-spacing: 0;
+    margin: 5px auto 0;
+    width: 55px;
+
+    @include breakpoint($thin) {
+      display: block;
+    }
+  }
+}
+
+.content-block-4.environmental-impact {
+  @extend %alternate-links;
+  background: {
+    image: url('/images/environmental-impact.png');
+    position: center -20px;
+    repeat: no-repeat;
+    size: cover;
+  }
+  border-top: 20px solid rgba(0, 0, 0, 0.25);
+  padding: 70px 0 90px !important;
+
+  h2 {
+    font-size: 24px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+    @include breakpoint($thin) {
+      font-size: 34px;
+    }
+  }
+
+  p {
+    box-sizing: border-box;
+    margin: 20px auto 40px;
+
+    @include breakpoint($regular) {
+      margin: 40px auto;
+      padding: 0 12.5px;
+    }
+
+    a {
+      font-weight: 500;
+      text: {
+        decoration: underline;
+        transform: none;
+      }
+    }
+  }
+}

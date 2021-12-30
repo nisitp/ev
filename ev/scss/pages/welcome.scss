@@ -1,0 +1,365 @@
+// welcome.scss
+// August 29, 2016
+// Alexander Rhett Crammer
+// Hot Sauce
+@import "../init";
+
+.welcome footer {
+  @include tiny-ev();
+}
+
+.join-the-revolution {
+  @include header-banner-background();
+  font: {
+    size: 72px;
+    weight: bold;
+  }
+  height: 483px;
+  position: relative;
+  overflow: visible;
+  text-transform: uppercase;
+
+  @include breakpoint($thin) {
+    height: 620px;
+  }
+
+  @include breakpoint($regular) {
+    height: 750px;
+  }
+
+  > div:first-of-type {
+    @include container();
+    @include add-grid(6 at $thin);
+    @include add-grid(12 at $regular);
+    position: relative;
+    height: 100%;
+    max-width: 100%;
+  }
+
+  .car-1 {
+    position: absolute;
+    top: 200px;
+    z-index: 2;
+
+    @include breakpoint($below-thin) {
+      display: none;
+    }
+
+    @include breakpoint($thin) {
+      top: 125px;
+      left: -970px;
+      width: 1170px;
+    }
+
+    @include breakpoint($regular) {
+      top: 80px;
+      left: -880px;
+    }
+
+    &.stuck-to-the-bottom {
+      top: 412px;
+    }
+  }
+
+  .cta {
+    position: absolute;
+    top: 185px;
+    text-align: center;
+
+    @include breakpoint($thin) {
+      top: 370px;
+      left: 260px;
+      text-align: left;
+    }
+
+    @include breakpoint($regular) {
+      top: 475px;
+      left: 335px;
+    }
+
+    @include breakpoint($wide) {
+      left: 395px;
+    }
+
+    .car-2 {
+      @include grid-span(7.5, 1);
+      display: block;
+      float: none;
+      margin: 30px auto 15px;
+
+      @include breakpoint($thin) {
+        @include grid-span(2.25, 1);
+        float: none;
+        margin-top: 0;
+      }
+    }
+
+    h3 {
+      color: #fff;
+      font: {
+        size: 24px;
+        weight: 500;
+      }
+      letter-spacing: 1px;
+      margin: {
+        top: 0;
+        bottom: 0;
+      }
+    }
+
+    p {
+      font: {
+        family: $secondary-stack;
+        size: 20px;
+        weight: 300;
+      }
+      letter-spacing: 1px;
+      line-height: 30px;
+      margin: {
+        top: 15px;
+        bottom: 15px;
+      }
+      text-transform: none;
+
+      @include breakpoint($thin) {
+        font-size: 18px;
+      }
+
+      span {
+        text-transform: uppercase;
+
+        span {
+          color: $lime;
+        }
+      }
+    }
+
+    .button {
+      display: block;
+      padding: {
+        left: 0;
+        right: 0;
+      }
+      width: 100%;
+
+      @include breakpoint($thin) {
+        @include grid-span(3, 1);
+      }
+
+      @include breakpoint($regular) {
+        @include grid-span(5, 1);
+      }
+    }
+  }
+
+  h1 {
+    font-size: 33px;
+    letter-spacing: 0;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    top: 55px;
+
+    @include breakpoint($below-thin) {
+      max-width: 275px;
+    }
+
+    @include breakpoint($thin) {
+      @include grid-span(4, 3, 6);
+      font-size: 45px;
+      top: 105px;
+    }
+
+    @include breakpoint($regular) {
+      @include grid-span(7, 5);
+      font-size: 65px;
+      letter-spacing: 5px;
+      top: 125px;
+    }
+
+    div {
+      font-size: 55px;
+      line-height: 55px;
+      letter-spacing: 0;
+      max-width: 275px;
+
+      @include breakpoint($thin) {
+        font-size: 100px;
+        line-height: 90px;
+      }
+
+      @include breakpoint($regular) {
+        font-size: 130px;
+        line-height: 140px;
+      }
+
+      @include breakpoint($wide) {
+        font-size: 150px;
+        line-height: 140px;
+      }
+
+      span {
+        color: $lime;
+        letter-spacing: 0;
+
+        @include breakpoint($thin) {
+          letter-spacing: 3px;
+        }
+      }
+    }
+  }
+}
+
+.calculator {
+  background-color: $white;
+  border: {
+    radius: 5px;
+    top: 15px solid $bright-blue;
+    bottom: 15px solid $bright-blue;
+  }
+  margin: 50px auto;
+  position: relative;
+  text-align: center;
+  max-width: 775px;
+  width: 90%;
+
+  > div:first-of-type {
+    border: {
+      color: $light-grey;
+      style: solid;top-width: 15px;
+      bottom-width: 15px;
+      right-width: 17px;
+      left-width: 17px;
+    }
+    padding: 35px 0;
+
+    @include breakpoint($thin) {
+      padding: 35px 30px;
+    }
+  }
+
+  h2 {
+    margin: auto;
+    width: 300px;
+
+    @include breakpoint($below-thin) {
+      font-size: 26px;
+    }
+
+    @include breakpoint($thin) {
+      width: 450px;
+    }
+  }
+
+  img {
+    margin-top: 25px;
+    width: 100%;
+
+    @include breakpoint($below-thin) {
+      width: 325px;
+    }
+  }
+}
+
+.content-block-7.find-for-your-needs {
+  @extend %minimal-links;
+  background-color: $lime;
+  color: $text-grey;
+  overflow: visible;
+  padding: 30px 0 !important;
+
+  @include breakpoint($thin) {
+    position: relative;
+    padding: 90px 0 !important;
+  }
+
+  > div > div {
+    overflow: auto;
+    padding: 0;
+
+    @include breakpoint($thin) {
+      @include grid-span(4, 3);
+      padding: 20px 0;
+    }
+
+    @include breakpoint($regular) {
+      @include grid-span(6, 5);
+    }
+
+    &:last-of-type {
+      padding: 0;
+    }
+  }
+
+  h3 {
+    margin-top: 0;
+  }
+
+  li {
+    @extend %custom-list-decoration-1;
+    @include grid-span(10, 3);
+    clear: both !important;
+
+    @include breakpoint($thin) {
+      width: 90%;
+    }
+
+    @include breakpoint($regular) {
+      @include grid-span(10, 1.85);
+    }
+
+    @include breakpoint($wide) {
+      @include grid-span(10, 1.75);
+    }
+  }
+}
+
+.section-introduction-container {
+  background: {
+    image: url('/images/section-introduction-background-ribbon.png');
+    position: center;
+    repeat: no-repeat;
+    size: 800px;
+  }
+  text-align: center;
+  z-index: 1;
+
+  @include breakpoint($below-thin) {
+    background-color: $dark-blue;
+    margin: 35px 0 0;
+    height: 100px;
+    line-height: 110px;
+  }
+
+  @include breakpoint($thin) {
+    line-height: 110px;
+  }
+
+  @include breakpoint($regular) {
+    line-height: 117px;
+  }
+
+  .section-introduction {
+    color: $white;
+  }
+
+  @include breakpoint($thin) {
+    height: 120px;
+    margin: 40px 0 65px;
+    width: 100%;
+  }
+}
+
+#HypeWrapper {
+  position: relative;
+  text-align: center;
+}
+
+// Buttons
+.learn-more-button {
+  @extend %primary-button;
+
+  &:link, &:hover, &:focus, &:active {
+    color: $white;
+  }
+}

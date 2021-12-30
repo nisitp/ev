@@ -1,0 +1,1685 @@
+// blocks.scss
+// September 6, 2016
+// Alexander Rhett Crammer
+// Hot Sauce
+@import "init";
+
+// Blocks
+.navigation .feedback-form {
+  background-color: $light-grey;
+  overflow: auto;
+
+  > div:first-of-type {
+    @include container();
+    overflow: auto;
+    padding: 50px 0;
+    position: relative;
+
+    > div:nth-of-type(2) {
+      @include breakpoint($thin) {
+        padding-top: 30px;
+      }
+    }
+  }
+
+  &.successfully-submitted .submission-confirmation-message .fa-close {
+    position: absolute;
+    top: 60px;
+    right: 60px;
+  }
+}
+
+.main-navigation {
+  @extend %alternate-links;
+  background-color: $slightly-dark-blue;
+  overflow: auto;
+  position: static;
+  text-transform: uppercase;
+
+  > div {
+    @include container();
+    @include add-grid(2);
+    @include add-gutter(1/10);
+    height: 90px;
+    overflow: hidden;
+    position: static;
+
+    @include breakpoint($wide) {
+      position: relative;
+    }
+  }
+
+  h1 {
+    @include grid-span(1.15, 1);
+    @extend %alternate-links;
+    font-family: $main-stack;
+    float: left;
+    line-height: 88px;
+    margin: 0;
+    padding: 0 16px;
+    padding-left: 0;
+
+    span {
+      color: $lime;
+    }
+
+    a {
+      font-size: 17px;
+
+      &:hover, &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+
+  button {
+    background-color: $red;
+    border-radius: 0;
+    font: {
+      family: $main-stack;
+      weight: 600;
+    }
+    font-size: 17px;
+    height: 35px;
+    line-height: 0;
+    letter-spacing: normal;
+    outline: none;
+    position: relative;
+
+    &:hover, &:focus, &:active {
+      background-color: $red;
+    }
+
+    &.opened::after {
+      background-color: $light-grey;
+      display: block;
+      height: 30px;
+      position: absolute;
+      top: 50px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      width: 30px;
+
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+
+      @include breakpoint($wide) {
+        content: '';
+      }
+    }
+  }
+
+  .mobile-menu {
+    @include grid-span(0.75, 1.075);
+    cursor: pointer;
+    display: block;
+    line-height: 90px;
+    text: {
+      align: right;
+      decoration: none;
+    }
+
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    @include breakpoint($thin) {
+      @include grid-span(5.10, 1, 12);
+    }
+
+    @include breakpoint($wide) {
+      display: none;
+    }
+
+    span {
+      width: 15px;
+    }
+  }
+
+  .navigation-links {
+    display: none;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+    list-style-type: none;
+
+    &.opened {
+      display: block;
+    }
+
+    &.underneath {
+      > div > li {
+        > a, > button {
+          @include breakpoint($below-wide) {
+            opacity: 0;
+            pointer-events: none;
+          }
+        }
+      }
+    }
+
+    @include breakpoint($below-wide) {
+      background-color: rgba(8, 132, 190, 0.95);
+      padding-bottom: 15px;
+      position: absolute;
+      top: 90px;
+      right: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    @include breakpoint($wide) {
+      bottom: 0;
+      display: block !important;
+      height: 100%;
+    }
+
+    > div {
+      @include breakpoint($below-wide) {
+        @include container();
+        position: relative;
+        overflow: hidden;
+      }
+    }
+
+    div > li > a::after {
+      @include breakpoint($below-wide) {
+        content: '\f054';
+        display: inline-block;
+        font: {
+          family: 'FontAwesome';
+          weight: 500;
+        }
+        margin-left: 10px;
+      }
+    }
+
+    li {
+      display: table-cell;
+      height: 75px;
+      padding: 0 16px;
+      vertical-align: middle;
+
+      @include breakpoint($below-wide) {
+        display: block !important;
+        height: 40px !important;
+        padding: 0;
+      }
+
+      @include breakpoint($wide) {
+        position: relative;
+        line-height: 90px;
+      }
+
+      a {
+        cursor: pointer;
+        font-size: 16px;
+
+        @include breakpoint($below-wide) {
+          @include grid-span(1.85, 1.075);
+          display: block !important;
+          line-height: 40px;
+          margin: 0;
+          width: 100%;
+        }
+
+        &.current-navigation-choice::after {
+          @include breakpoint($wide) {
+            background-color: $light-grey;
+            content: '';
+            display: block;
+            height: 20px;
+            margin: auto;
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            right: 0;
+            width: 20px;
+
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+          }
+        }
+
+        &.escape-link::before {
+          @include breakpoint($below-wide) {
+            content: '\f053';
+            display: inline-block;
+            font: {
+              family: 'FontAwesome';
+              weight: 500;
+            }
+            margin-right: 10px;
+          }
+        }
+      }
+
+      a:link, a:visited {
+        color: #fff;
+      }
+
+      a:hover, a:focus, {
+        color: darken(#fff, 5%);
+      }
+
+      a:active {
+        color: darken(#fff, 10%);
+      }
+
+      &:last-of-type {
+        @include breakpoint($wide) {
+          padding-right: 0;
+        }
+      }
+    }
+  }
+
+  .mobile-subnavigation-links {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: -100%;
+    transition: right 125ms;
+    width: 100%;
+    z-index: 1;
+
+    @include breakpoint($wide) {
+      display: none;
+    }
+
+    &.revealed {
+      right: 0;
+    }
+
+    > ul {
+      @include container();
+    }
+
+    li {
+      &:first-of-type {
+        margin-top: 0;
+      }
+
+      &:nth-of-type(1n+2) {
+        margin: 0;
+
+        a {
+          font-weight: 300;
+          text-transform: none;
+        }
+      }
+    }
+  }
+
+  .subnavigation-links {
+    background-color: $light-grey;
+    height: 100px;
+    line-height: 100px;
+    width: 100%;
+
+    @include breakpoint($below-wide) {
+      display: none;
+    }
+
+    ul {
+      @include container();
+      margin: 0 auto;
+    }
+
+    li {
+      display: inline;
+      padding: 0 30px;
+      position: relative;
+
+      &:first-of-type {
+        padding-left: 0;
+      }
+
+      &:last-of-type::before {
+        content: none;
+      }
+
+      &::before {
+        background-color: $bright-blue;
+        content: '';
+        display: inline-block;
+        height: 15px;
+        position: absolute;
+        top: 5px;
+        right: 0;
+        bottom: 0;
+        vertical-align: middle;
+        width: 2px;
+      }
+    }
+
+    a {
+      color: $text-grey;
+      font: {
+        size: 18px;
+        weight: 500;
+      }
+      letter-spacing: normal;
+      text-transform: none;
+    }
+  }
+}
+
+.main-header {
+  @include header-banner-background();
+  background: {
+    color: #1ca1d8;
+    repeat: no-repeat;
+    size: cover;
+    position: 15px 10px;
+  }
+  height: 330px;
+  padding: 0 !important;
+  position: relative;
+  text-align: center;
+
+  @include breakpoint($thin) {
+    background: {
+      position: 15px -5px;
+      size: 975px;
+    }
+    height: 325px;
+  }
+
+  @include breakpoint($wide) {
+    background: {
+      position: center -25px;
+      size: 1500px;
+    }
+    height: 475px;
+  }
+
+  &::before {
+    height: 142px;
+    top: 130px;
+
+    @include breakpoint($thin) {
+      height: 145px;
+      top: 120px;
+    }
+
+    @include breakpoint($wide) {
+      height: 205px;
+      top: 180px;
+    }
+  }
+
+  h1 {
+    display: inline-block;
+    font-size: 30px;
+    letter-spacing: 2px;
+    line-height: 38px;
+    padding: 0;
+    position: relative;
+    top: 142.5px;
+
+    @include breakpoint($thin) {
+      font-size: 45px;
+      line-height: 58px;
+      top: 135px;
+    }
+
+    @include breakpoint($wide) {
+      font-size: 72px;
+      line-height: 80px;
+      top: 205px;
+      max-width: 1085px;
+    }
+  }
+}
+
+.welcome .feedback-form-container,
+.welcome .hype-feedback-form {
+  display: block;
+}
+
+.hype-feedback-form {
+  display: none;
+  overflow: hidden;
+}
+
+.feedback-form-container {
+  background-color: $light-grey;
+  color: $text-grey;
+  display: none;
+  text-align: center;
+
+  > div:first-of-type {
+    @include container();
+    @extend %minimal-links;
+    padding-bottom: 40px;
+
+    > p {
+      margin: 0;
+      text-align: center;
+
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    label {
+      text-align: left;
+    }
+  }
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.feedback-form {
+  background-color: $light-grey;
+  position: relative;
+  overflow: auto;
+
+  &.ng-submitted {
+    .ng-invalid {
+      border: 1px solid $red;
+    }
+  }
+
+  &.successfully-submitted {
+    position: relative;
+
+    .submission-confirmation-message .fa-close {
+      position: absolute;
+      top: 60px;
+      right: 0;
+    }
+
+    > div:first-of-type {
+      > div:nth-of-type(1),
+      > div:nth-of-type(2) {
+        display: none;
+      }
+    }
+  }
+
+  .fa-close {
+    @include breakpoint($below-thin) {
+      position: absolute;
+      top: 50px;
+      right: 0;
+    }
+  }
+
+  > div:first-of-type {
+    @include container();
+    overflow: auto;
+    padding: 50px 0 0;
+
+    @include breakpoint($thin) {
+      padding-top: 60px;
+    }
+
+    > div {
+      @include grid-span(12, 1, 12);
+      text-align: left;
+    }
+
+    > div:nth-of-type(1) {
+      @include breakpoint($thin) {
+        @include grid-span(4, 1, 12);
+      }
+    }
+
+    > div:nth-of-type(2) {
+      @include add-grid(8);
+      @include breakpoint($thin) {
+        @include grid-span(7.75, 5.25, 12);
+        clear: right;
+      }
+    }
+
+    .submission-confirmation-message {
+      padding: 60px 0;
+      text-align: center;
+    }
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  p {
+    color: $text-grey;
+  }
+
+  input, textarea {
+    border: 1px solid darken($light-grey, 10%);
+    box-sizing: border-box;
+    margin: 15px 0 0;
+    padding: {
+      left: 0;
+      right: 0;
+    }
+    text-indent: 30px;
+  }
+
+  input {
+    width: 100%;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  .error-message {
+    color: $red;
+    display: block;
+    margin: 10px 0 0;
+    text-align: left;
+  }
+
+  textarea {
+    clear: both;
+    display: block;
+    height: 260px;
+    padding: 30px;
+    resize: vertical;
+    text-indent: 0;
+    width: 100%;
+
+    @include breakpoint($regular) {
+      height: 278px;
+    }
+
+    @include breakpoint($wide) {
+      height: 250px;
+    }
+  }
+
+  .fa-close {
+    color: $red;
+    cursor: pointer;
+    display: block;
+    float: right;
+    font-size: 30px;
+    width: 25px;
+  }
+
+  label {
+    @include grid-span(12, 1, 12);
+    display: block;
+    float: none;
+    margin: 0;
+    padding: {
+      left: 0;
+      right: 0;
+    }
+    overflow: auto;
+    width: 100% !important;
+
+    @include breakpoint($thin) {
+      @include grid-span(9.5, 1, 12);
+      float: none;
+      margin: 0;
+      width: 100% !important;
+    }
+
+    @include breakpoint($regular) {
+      @include grid-span(8, 1, 12);
+    }
+
+    input[type="checkbox"] {
+      margin: 0;
+      width: 20px;
+    }
+
+    .title {
+      @include grid-span(10, 2, 12);
+      font-size: 16px;
+      line-height: 30px;
+      padding: 0;
+
+      @include breakpoint($thin) {
+        @include grid-span(11, 1.75, 12);
+      }
+    }
+  }
+
+  .wants-subscription-choice {
+    @include breakpoint($regular) {
+      padding-top: 15px;
+    }
+  }
+
+  .submit-button {
+    @include grid-span(12, 1, 12);
+    background-color: $red;
+    border-radius: 0;
+    clear: both;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    text: {
+      indent: 0;
+      transform: uppercase;
+    }
+
+    -webkit-appearance: none;
+
+    @include breakpoint($thin) {
+      @include grid-span(4, 9, 12);
+    }
+
+    @include breakpoint($regular) {
+      @include grid-span(2.5, 10.5, 12);
+      margin-top: 20px;
+    }
+
+    &[disabled] {
+      background-color: #a0a0a0;
+    }
+  }
+
+  $placeholder-color: $light-grey;
+  ::-webkit-input-placeholder {
+    color: $placeholder-color;
+  }
+
+  :-moz-placeholder {
+    color: $placeholder-color;
+  }
+
+  ::-moz-placeholder {
+    color: $placeholder-color;
+  }
+
+  :-ms-input-placeholder {
+    color: $placeholder-color;
+  }
+}
+
+.tweets-container {
+  clear: both;
+  padding: 20px 0px;
+  border-top: 10px solid darken($lime, 5%);
+  background-color: $lime;
+
+  a:hover, a:focus {
+    text-decoration: none;
+  }
+
+  > div:first-of-type {
+    @include container();
+  }
+
+  @include breakpoint($below-thin) { padding: 15px 0px 35px 0px;}
+  #tweet-feed {
+    iframe {
+      width: 100% !important;
+    }
+
+    .tweets {
+      outline: none;
+
+      &:not(.slick-slider) {
+        @include clearfix();
+
+        .tweet {
+          @include cols(3, $thin $regular, 6);
+          @include cols(3, $regular, 12);
+        }
+      }
+
+      .tweet {
+        outline: none;
+
+        * {
+          font-size: 14px;
+          line-height: 150%;
+          outline: none;
+        }
+
+        .profile-link {
+          float: left; clear: both;
+          color: #56575b;
+          margin-bottom: 10px;
+
+          &:after {
+            content: '' !important;
+            display: none !important;
+          }
+
+          * {
+            margin-bottom: 0;
+            padding-bottom: 0;
+          }
+
+          img {
+            float: left;
+            height: auto;
+            margin-right: 5px;
+            width: 28px;
+
+            @include breakpoint($thin) {
+              @include grid-span(2, 1, 12);
+              max-width: 28px;
+            }
+          }
+
+          .handle {
+            font-weight: normal;
+            margin-left: 3px;
+            text-transform: lowercase;
+
+            @include breakpoint($regular) {
+              margin-left: 5px;
+            }
+
+            &:before {
+              content: '|';
+              margin-right: 3px;
+
+              @include breakpoint($regular) {
+                margin-right: 5px;
+              }
+            }
+          }
+
+          .title {
+            float: left;
+            letter-spacing: 0.5px;
+            line-height: 28px;
+            padding: 0;
+            text-transform: none;
+
+            @include breakpoint($thin) {
+              @include grid-span(10, 3, 12);
+            }
+
+            @include breakpoint($regular) {
+              @include grid-span(10, 2.5, 12);
+            }
+
+            @include breakpoint($wide) {
+              @include grid-span(8, 2.25, 12);
+            }
+          }
+        }
+
+        .meta {
+          color: $white;
+          clear: both;
+          display: block;
+          float: none;
+          font: {
+            size: 14px;
+            weight: 300;
+          }
+          padding: 10px 0;
+          text-transform: none;
+          white-space: nowrap;
+
+          @include breakpoint($below-regular) {
+            width: 100%;
+          }
+
+          @include breakpoint($regular) {
+            clear: none;
+            display: inline-block;
+            float: right;
+            line-height: 28px;
+            padding: 0;
+          }
+
+          * {
+            font-size: 14px;
+            color: #95979e;
+          }
+
+          a::after {
+            content: '';
+            display: none;
+          }
+        }
+
+        .status {
+          clear: both;
+          display: block;
+          font-weight: 500;
+          letter-spacing: normal;
+          text-transform: none;
+          width: 100%;
+
+          @include breakpoint($regular) {
+            padding-top: 10px;
+          }
+        }
+
+        &.slick-slide {
+          @include breakpoint($thin) {
+            padding: 15px; box-sizing: border-box;
+          }
+
+          &.slick-active {
+
+            + .slick-active {
+              position: relative;
+
+              &:before {
+                @include breakpoint($thin) {
+                  content: '.'; font-size: 0px;
+                  display: block;
+                  background-color: $white;
+                  position: absolute; left: -1px; top: 0px; z-index: 100;
+                  height: 100%; width: 1px;
+                }
+              }
+            }
+          }
+        }
+
+        * {
+          color: $text-grey;
+        }
+      }
+    }
+  }
+
+  .direction-nav {
+    position: relative;
+    @include breakpoint($thin) { display: none; }
+  }
+}
+
+.sections {
+  h3 {
+    border-top: 2px solid $white;
+    font-weight :300;
+    padding: {
+      top: 35px;
+    }
+    margin-top: 25px;
+    margin-bottom: 0;
+  }
+
+  a {
+    display: block;
+    margin-top: 15px;
+  }
+}
+
+.two-ctas {
+  @extend %two-contained-columns;
+
+  h3 {
+    border-top: 2px solid $white;
+    font-weight :300;
+    padding: {
+      top: 35px;
+      bottom: 25px;
+    }
+    margin-top: 25px;
+    margin-bottom: 0;
+  }
+}
+
+.block-title {
+  @include container();
+  margin-top: 30px;
+
+  &::after {
+    content: '\f078';
+    font: {
+      family: 'FontAwesome';
+      size: 24px;
+    }
+    display: inline-block;
+    margin-left: 15px;
+    vertical-align: 7px;
+  }
+}
+
+.content-block-1 {
+  @extend %minimal-links;
+  @extend %two-contained-columns;
+  background-color: #fff;
+  padding: 90px 0 !important;
+  text-align: center;
+
+  > div {
+    @include container();
+    padding: 0;
+    text-align: left;
+  }
+
+  h3 {
+    margin: 25px 0 15px;
+
+    &:first-of-type {
+      @include breakpoint($below-thin) {
+        margin: 0 0 15px;
+      }
+    }
+  }
+
+  img {
+    width: 100%;
+  }
+
+  p {
+    color: $text-grey;
+    line-height: 28px;
+    margin-top: 5px;
+    text-align: left;
+
+    @include breakpoint($regular) {
+      padding-right: 25px;
+    }
+  }
+}
+
+.content-block-2 {
+  background-color: $lime;
+  position: relative;
+  text-align: center;
+
+  > div {
+    @include container($with-gutter: false);
+    overflow: hidden;
+  }
+
+  p {
+    margin: 45px 0;
+  }
+}
+
+.content-block-3 {
+  overflow: visible;
+  position: relative;
+  text-align: center;
+
+  > div {
+    @include container();
+    @include add-grid(12 at $thin);
+    padding-top: 50px;
+    overflow: hidden;
+
+    @include breakpoint($thin) {
+      padding-top: 0;
+    }
+
+    > div {
+      @include grid-span(12, 1, 12);
+      clear: both;
+      box-sizing: border-box;
+      padding: 60px 0;
+
+      @include breakpoint($below-thin) {
+        float: none !important;
+      }
+
+      @include breakpoint($thin) {
+        padding: 60px 0 0;
+      }
+
+      @include breakpoint($thin) {
+        &:first-of-type {
+          @include grid-span(5, 1.5, 12);
+        }
+
+        &:last-of-type {
+          @include grid-span(5, 7.5, 12);
+          padding: 60px 0 0;
+        }
+      }
+    }
+  }
+
+  h3 {
+    clear: both;
+    text-align: left;
+  }
+
+  a, li {
+    font-size: 16px;
+  }
+
+  img {
+    @include grid-span(12, 1, 12);
+    float: none;
+    margin-bottom: 25px;
+
+    @include breakpoint($thin) {
+      @include grid-span(10, 2, 12);
+    }
+  }
+
+  &.layout-1 {
+    background-color: $lime;
+    color: $text-grey;
+    padding: 90px 0 !important;
+
+    .section-introduction {
+      margin-bottom: 0;
+    }
+
+    h3 {
+      line-height: 36px;
+    }
+
+    h3, p {
+      padding: 0;
+    }
+
+    > div > div {
+      margin: 0 auto;
+      padding: 0;
+      text-align: left;
+
+      @include breakpoint($thin) {
+        padding: 50px 0;
+      }
+
+      &:first-of-type {
+        padding-bottom: 0;
+        position: relative;
+
+        &::after {
+          @include breakpoint($thin) {
+            background-color: $white;
+            content: '';
+            display: block;
+            height: 85%;
+            position: absolute;
+            top: 55px;
+            right: -20px;
+            bottom: 0;
+            width: 2px;
+          }
+
+          @include breakpoint($regular) {
+            right: -27.5px;
+          }
+
+          @include breakpoint($wide) {
+            right: -55px;
+          }
+        }
+      }
+
+      &:last-of-type {
+        > div {
+          @include grid-span(12, 1, 12);
+          float: none;
+        }
+
+        img {
+          margin: 25px auto;
+        }
+      }
+
+      h3 {
+        text-align: center;
+      }
+
+      p:first-of-type {
+        margin-top: 0;
+      }
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+      }
+
+      &:first-of-type ul {
+        padding-left: 60px;
+        width: 80%;
+
+        li {
+          @extend %minimal-links;
+          @extend %custom-list-decoration-1;
+          margin: 15px 0;
+
+          @include breakpoint($thin) {
+            margin: 35px 0;
+          }
+        }
+      }
+
+      &:last-of-type {
+        text-align: center;
+      }
+    }
+
+    img {
+      float: none;
+      margin: auto;
+      overflow: hidden;
+      position: relative;
+      width: 125px;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
+.content-block-4 {
+  background: {
+    color: $dark-grey;
+    position: center center;
+    repeat: no-repeat;
+    size: cover;
+  }
+  color: $white;
+  padding: 90px 0 100px !important;
+  position: relative;
+  text-align: center;
+
+  > div {
+    @include container();
+  }
+
+  h2, p {
+    color: $white;
+  }
+
+  p {
+    margin: 45px auto 0;
+
+    @include breakpoint($regular) {
+      width: 970px;
+    }
+  }
+}
+
+.content-block-5 {
+  @include clearfix();
+  overflow: hidden;
+  padding: 120px 0 !important;
+  position: relative;
+  text-align: center;
+
+  @include breakpoint($regular) {
+    padding: 120px 0 40px !important;
+  }
+
+  > div {
+    @include container();
+    overflow: auto;
+  }
+
+  section {
+    @include breakpoint($regular) {
+      @include cols(2, $regular, 12);
+      width: 385px !important;
+    }
+
+    &:first-of-type {
+      margin-bottom: 60px;
+    }
+
+    h3, p {
+      margin: 15px auto;
+
+      @include breakpoint($below-thin) {
+        max-width: 575px;
+      }
+    }
+  }
+}
+
+.content-block-6 {
+  background-color: $light-grey;
+  padding-bottom: 15px;
+
+  @include breakpoint($thin) {
+    padding-bottom: 60px;
+  }
+
+  > div:first-of-type {
+    @include container();
+  }
+
+  .sorting-and-view-options {
+    overflow: auto;
+    padding: 30px 0 0;
+
+    @include breakpoint($thin) {
+      padding: 50px 0 0;
+    }
+
+    > label {
+      display: block;
+      margin-bottom: 30px;
+      padding: 0;
+
+      @include breakpoint($thin) {
+        display: inline-block;
+      }
+
+      &.orderer {
+        margin-bottom: 0;
+      }
+
+      &:nth-of-type(1n+2) {
+        @include breakpoint($thin) {
+          margin-left: 30px;
+        }
+      }
+    }
+
+    .title {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .select-container {
+      background-color: #fff;
+      background: {
+        image: url('/images/dropdown-arrow.png');
+        position: center right;
+        repeat: no-repeat;
+        size: 50px;
+      }
+      margin-top: 15px;
+      position: relative;
+      width: 290px;
+
+      @include breakpoint($thin) {
+        width: 240px;
+      }
+    }
+
+    select {
+      background: {
+        color: transparent;
+        image: none;
+      }
+      color: $text-grey;
+      border: none;
+      box-shadow: none;
+      font: {
+        size: 18px
+      }
+      height: 50px;
+      padding: 0 15px;
+      width: 100%;
+
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      &::-ms-expand {
+        display: none;
+      }
+
+      &::ms-value {
+        background: none;
+      }
+    }
+
+    .switch {
+      height: 40px;
+      width: 80px;
+
+      &.checked small {
+        left: 40px;
+      }
+
+      &, small {
+        transition: 75ms ease-out all;
+        -webkit-transition: 75ms ease-out all;
+      }
+
+      small {
+        background-color: $red;
+        height: 40px;
+        width: 40px;
+      }
+
+      &.checked {
+        background: #fff;
+        border-color: $light-grey;
+      }
+    }
+
+    .view-icon {
+      border-radius: 0;
+      background: {
+        color: transparent;
+        position: top center;
+        repeat: no-repeat;
+        size: cover;
+      }
+      cursor: pointer;
+      height: 30px;
+      outline: none;
+      padding: 0;
+      width: 30px;
+
+      &.selected {
+        background-position: bottom center;
+      }
+    }
+
+    .list-view-icon {
+      background-image: url('/images/icons/list-view.png');
+    }
+
+    .grid-view-icon {
+      background-image: url('/images/icons/grid-view.png');
+    }
+
+    .title {
+      display: block;
+    }
+
+    .view-toggle-options {
+      float: right;
+      padding: 0;
+
+      @include breakpoint($below-thin) {
+        display: none;
+      }
+
+      .title {
+        margin-bottom: 15px;
+        text-align: right;
+      }
+
+      button {
+        vertical-align: 5px;
+      }
+
+      .list-view-icon {
+        margin-right: 15px;
+      }
+
+      .grid-view-icon {
+        margin-left: 15px;
+      }
+
+      .switch {
+        top: 0;
+        bottom: 0;
+      }
+    }
+  }
+
+  table {
+    background-color: #fff;
+    border-collapse: collapse;
+    color: $text-grey;
+    width: 100%;
+
+    td {
+      padding: 0 20px;
+    }
+
+    thead  {
+      background-color: #bcbcbc;
+      color: #fff;
+      font-size: 18px;
+
+      tr {
+        height: 70px;
+      }
+
+      td {
+        border-right: 1px solid white;
+
+        &:last-of-type {
+          border-left: 1px solid white;
+          border-right: 0;
+        }
+      }
+    }
+
+    tbody {
+      font: {
+        family: $secondary-stack;
+        size: 24px;
+        weight: 400;
+      }
+
+      tr {
+        border-bottom: 1px solid grey;
+        height: 150px;
+      }
+
+      td {
+        text-align: center;
+      }
+    }
+
+    .sorting-by {
+      background-color: $slightly-dark-blue;
+    }
+  }
+}
+
+.content-block-7 {
+  @extend %minimal-links;
+  background-color: $lime;
+  color: $text-grey;
+  padding: 30px 0;
+
+  @include breakpoint($thin) {
+    padding: 90px 0;
+  }
+
+  > div {
+    @include container();
+    overflow: auto;
+
+    > div {
+      overflow: auto;
+      padding: 0;
+
+      @include breakpoint($thin) {
+        @include grid-span(6, 1);
+      }
+
+      &:last-of-type {
+        padding: 0;
+      }
+    }
+  }
+}
+
+.content-block-8 {
+  background-color: $light-grey;
+  color: $text-grey;
+  padding: 30px 0 !important;
+  position: relative;
+  text-align: center;
+
+  @include breakpoint($thin) {
+    padding: 90px 0 !important;
+  }
+
+  > div {
+    @include container();
+
+    @include breakpoint($below-tiny) {
+      width: 300px;
+    }
+
+    > p {
+      margin: 30px auto 0;
+      width: 285px;
+
+      &:first-of-type {
+        @include breakpoint($below-thin) {
+          text-align: left;
+        }
+      }
+
+      @include breakpoint($thin) {
+        width: 600px;
+      }
+
+      @include breakpoint($regular) {
+        width: 865px;
+      }
+    }
+  }
+
+  img {
+    margin: 40px;
+    position: relative;
+  }
+
+  h3 {
+    padding-bottom: 25px;
+    font-weight: 500;
+  }
+
+  .sections {
+    @extend %two-columns;
+    margin-top: 10px;
+    overflow: hidden;
+
+    section {
+      position: relative;
+
+      @include breakpoint($thin) {
+        @include middle-divider($top: 75px);
+      }
+
+      img, h3, p {
+        margin: {
+          left: auto;
+          right: auto;
+        }
+        width: 285px;
+
+        @include breakpoint($regular) {
+          width: 400px;
+        }
+      }
+
+      p {
+        margin: {
+          top: 0;
+          bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+.content-block-9 {
+  background-color: $lime;
+  color: $text-grey;
+  overflow: visible;
+  padding: 90px 0 !important;
+  position: relative;
+  text-align: center;
+
+  > div {
+    @include container($with-gutter: false);
+    overflow: hidden;
+  }
+
+  p {
+    margin: 45px 0;
+    text-align: left;
+
+    @include breakpoint($thin) {
+      @include grid-span(10, 2);
+      float: none;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+  }
+
+  .items {
+    @include breakpoint($thin) {
+      padding-top: 30px;
+    }
+
+    div {
+      @include cols(3, $regular, 12);
+      margin: 40px auto;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+
+      @include breakpoint($thin) {
+        margin: 0 auto;
+      }
+
+      img {
+        @include grid-span(8, 3, 12);
+
+        @include breakpoint($thin) {
+          @include grid-span(5, 4.5);
+        }
+
+        @include breakpoint($regular) {
+          @include grid-span(9, 2.5);
+        }
+      }
+
+      h3 {
+        clear: both;
+        margin: 20px 0 0;
+      }
+    }
+  }
+}
+
+// Layouts
+.layout-1 {
+  > div > div {
+    @include add-grid(12);
+    @include grid-span(11, 1.5);
+    box-sizing: border-box;
+    padding: 0;
+
+    @include breakpoint($thin) {
+      padding: 0 20px;
+    }
+
+    h3:first-of-type,
+    p:first-of-type {
+      margin: 0;
+      margin-bottom: 20px;
+    }
+
+    &:first-of-type {
+      @include breakpoint($thin) {
+        @include grid-span(7.5, 1);
+      }
+    }
+
+    &:last-of-type {
+      @include breakpoint($below-thin) {
+        clear: both;
+      }
+
+      @include breakpoint($thin) {
+        @include grid-span(4, 9);
+      }
+
+      @include breakpoint($regular) {
+        @include grid-span(3.5, 9.5);
+      }
+    }
+  }
+}

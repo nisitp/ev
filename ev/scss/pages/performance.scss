@@ -1,0 +1,130 @@
+// performance.scss
+// August 30, 2016
+// Alexander Rhett Crammer
+// Hot Sauce
+@import "../init";
+
+.performance {
+  .main-header {
+    @include breakpoint($below-thin) {
+      background-position: right center;
+    }
+
+    h1 {
+      @include breakpoint($below-thin) {
+        font-size: 24px;
+        line-height: 40px;
+      }
+
+      @include breakpoint(max-width 475px) {
+        font-size: 30px;
+        width: 100%;
+      }
+
+      @include breakpoint($regular) {
+        font-size: 55px;
+      }
+    }
+  }
+
+  p {
+    color: $text-grey;
+  }
+
+  .container {
+    @include container($with-gutter: false);
+
+    > section, > div {
+      padding: 140px 0;
+    }
+  }
+}
+
+.content-block-1.quotes {
+  @include breakpoint($below-thin) {
+    > div > div:first-of-type {
+      padding-bottom: 30px;
+    }
+  }
+
+  @include breakpoint($thin) {
+    text-align: left;
+  }
+
+  > div:last-of-type p {
+    @include breakpoint($below-thin) {
+      padding-right: 0;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.content-block-1.find-charging-stations {
+  overflow: visible;
+  padding: 80px 0 !important;
+  position: relative;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 30px;
+  }
+
+  iframe {
+    box-sizing: border-box;
+    margin-bottom: 40px;
+  }
+
+  p {
+    padding: 0;
+  }
+}
+
+.content-block-3.range-confidence {
+  padding: 88px 0 25px !important;
+
+  @include breakpoint($thin) {
+    padding: 88px 0 !important;
+  }x
+
+  h3 {
+    font-weight: 500;
+  }
+
+  h3, p {
+    margin: auto;
+    text-align: left;
+  }
+
+  p {
+    margin-top: 10px;
+  }
+
+  > div > div {
+    @include middle-divider(100px);
+
+    @include breakpoint($below-thin) {
+      &:first-of-type {
+        padding: 0;
+      }
+    }
+
+    &:first-of-type::after {
+      right: -50px;
+
+      @include breakpoint($wide) {
+        right: -60px;
+      }
+    }
+  }
+}
+
+.content-block-4.tech {
+  background-image: url('/images/crosswalk.jpg');
+
+  p {
+    color: $white;
+  }
+}

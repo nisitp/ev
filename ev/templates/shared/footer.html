@@ -1,0 +1,107 @@
+<footer>
+  <div id="call-to-action-container">
+    <section>
+      <h2>Stay Current on the r<span>EV</span>olution</h2>
+      <div class="form-content" ng-controller="FormController">
+	    <p ng-if="successMessage" class="newsletter-success-message" ng-bind="successMessage"></p>
+        <p ng-hide="successMessage">Sign up for email updates to learn about new models hitting the market, get helpful tips and info for EV owners, and more.</p>
+        <form method="post" name="signUpForm" id="sign-up-form" ng-submit="submitForm()" ng-hide="successMessage" novalidate>
+          <input type="email" name="Email" placeholder="Your Email Address" ng-model="email" ng-pattern="/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/" required>
+          <button type="submit">Sign up Now</button>
+          <p class="error-block" ng-show="error"><span>Invalid Email Address</span></p>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <div id="HypeWrapper">
+    <div id="hype-feedback-form" class="hype-feedback-form">
+      <div> <!-- Because the next `div` gets lots of delinquent inline styles and ignores the container() mixin -->
+        <div id="{{viewportWidth}}2_hype_container" style="margin:auto;position:relative;width:100%;height:100%;overflow:hidden;" aria-live="polite">
+        </div>
+      </div>
+    </div> <!-- .hype-feedback-form -->
+  </div> <!-- #HypeWrapper -->
+
+  <div class="feedback-form-container">
+    <div>
+      <h3>Don't see a topic that interests you?</h3>
+      <p><a ng-click="toggleFooterFeedbackForm()">Leave us a message</a> with additional feedback.</p>
+      <form ng-controller="FeedbackFormController" ng-if="revealingFooterFeedbackForm" class="feedback-form" ng-class="successfullySubmitted ? 'successfully-submitted' : ''" name="footerFeedbackForm" method="post" ng-model="footerFeedbackForm" novalidate>
+        <input type="hidden" name="wantsToSee">
+        <div>
+          <span class="fa fa-close" ng-click="toggleFooterFeedbackForm()"></span>
+          <div>
+            <h3>Share Your Thoughts</h3>
+            <p>We love hearing from you! Your feedback helps us improve this site. Tell us what you would like to learn more about or what information was most helpful, and we&apos;ll do our best to make this site even more useful.</p>
+            <input type="text" name="firstName" ng-model="firstName" placeholder="Name" ng-required="true">
+            <span ng-show="
+              footerFeedbackForm.firstName.$error.required
+              && footerFeedbackForm.$submitted
+            " class="error-message">Name Required</span>
+            <input type="email" name="email" ng-model="email" placeholder="Email" ng-required="true" ng-pattern="emailPattern">
+            <span ng-show="
+              footerFeedbackForm.email.$error.required != true
+              && footerFeedbackForm.email.$invalid
+              && footerFeedbackForm.$submitted
+            " class="error-message">Invalid Email Address</span>
+            <span ng-show="
+              footerFeedbackForm.email.$error.required
+              && footerFeedbackForm.$submitted
+            " class="error-message">Email Address Required</span>
+          </div>
+          <div>
+            <textarea name="message" rows="9" cols="40" placeholder="Type your message here..." ng-model="message" ng-required="true"></textarea>
+            <span ng-show="
+              footerFeedbackForm.message.$error.required
+              && footerFeedbackForm.$submitted
+            " class="error-message">Message Required</span>
+            <label class="wants-subscription-choice">
+              <input type="checkbox" name="wantsSubscription" ng-model="wantsSubscription" value="0">
+              <span class="title">Sign me up for the latest news from the REVolution.</span>
+            </label>
+            <input class="submit-button" type="submit" name="Submit" value="Submit" ng-click="submitForm()">
+          </div>
+          <div ng-show="successfullySubmitted" class="submission-confirmation-message">
+            <h3>Thank you for your feedback</h3>
+            <p>Your feedback is valuable to us as we make this rEVolution together!</p>
+          </div> <!-- .submission-confirmation-message -->
+        </div>
+      </form>
+    </div>
+  </div> <!-- .feedback-form-container -->
+
+  <div class="tweets-container">
+    <div class="content-region">
+      <div>
+        <div id="tweet-feed"></div>
+        <span class="direction-nav">
+          <a href="#" class="nav-prev">&laquo;</a>
+          <a href="#" class="nav-next">&raquo;</a>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer-sitemap">
+    <section>
+      <nav ng-repeat="link in links">
+        <h4 ng-bind="link.title"></h4>
+        <ul ng-if="link.subnavigationLinks">
+          <li ng-repeat="subnavigationLink in link.subnavigationLinks">
+            <a ng-href="{{subnavigationLink.path}}" ng-bind="subnavigationLink.title"></a>
+          </li>
+        </ul>
+      </nav>
+      <img class="mobile-logo" src="/images/logos/southern-company-horizontal.svg" alt="Southern Company logo">
+      <p class="social-links">Connect With Us: <a class="social-facebook" href="https://www.facebook.com/JoinEVRevolution" target="_blank"></a><a class="social-twitter" href="https://twitter.com/Revolution_EV" target="_blank"></a><a class="social-instagram" href="https://www.instagram.com/revolution_ev/" target="_blank"></a></p>
+    </section>
+  </div>
+
+  <div id="sub-footer">
+    <section>
+      <div id="legalese">&copy; <span ng-bind="currentYear"></span> Southern Company. Use constitutes acceptance of General Website <a href="http://www.southerncompany.com/legal/home.cshtml" target="_blank">Terms &amp; Conditions</a> | <a  href="http://www.southerncompany.com/legal/privacy-statement.cshtml" target="_blank">Privacy Statement</a> | <a href="/endorsement-disclaimer">Endorsement Disclaimer</a></div>
+      <div class="social-links">Connect With Us: <a class="social-facebook" href="https://www.facebook.com/JoinEVRevolution" target="_blank"></a><a class="social-twitter" href="https://twitter.com/Revolution_EV" target="_blank"></a><a class="social-instagram" href="https://www.instagram.com/revolution_ev/" target="_blank"></a></div>
+    </section>
+  </div>
+</footer>

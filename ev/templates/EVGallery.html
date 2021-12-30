@@ -1,0 +1,146 @@
+<section class="main-header" style="background-image: url('/images/gallery-banner.jpg')">
+  <h1>EV Gallery</h1>
+</section>
+
+<section class="content-block-6 vehicle-gallery">
+  <div>
+    <div class="sorting-and-view-options">
+      <label class="sorter">
+        <span class="title">Sort By</span>
+        <div class="select-container">
+          <select
+            id="sortByMenu"
+            ng-change="sortElectricVehicles()"
+            ng-model="sortByOption"
+            ng-options="option.name for option in sortingOptions track by option.identifier"
+          >
+        </select>
+        </div> <!-- .select-container -->
+      </label>
+      <label class="orderer">
+        <span class="title">Order By</span>
+        <div class="select-container">
+          <select
+            id="orderByMenu"
+            ng-model="orderByOption"
+            ng-change="reorderElectricVehicles()"
+            ng-options="option for option in orderOptions"
+          >
+          </select>
+        </div> <!-- .select-container -->
+      </label>
+      <div class="view-toggle-options">
+        <span class="title">Toggle View</span>
+        <button class="view-icon list-view-icon selected" ng-click="swapToListView()"></button>
+        <switch ng-model="viewSwitch" ng-change="swapView()"></switch>
+        <button class="view-icon grid-view-icon" ng-click="swapToGridView()"></button>
+      </div>
+    </div> <!-- .sorting-and-view-options -->
+
+    <div class="compact-list-view layout-2" ng-class="selectedView == 'grid' ? 'grid-view' : 'list-view'" ng-repeat="ev in electricVehicles">
+      <div class="car-brief">
+        <div class="thumbnail" ng-attr-style="
+          background-position: {{ev.spriteIconPosition}}
+        "></div> <!-- .thumbnail -->
+        <h3 class="make-and-model" ng-bind="ev.makeAndModel"></h3>
+        <a class="find-a-dealer-link" href="{{ev.dealershipLink}}" target="_blank">Find a Dealer</a>
+      </div> <!-- .car-brief -->
+      <div class="car-specs">
+        <ul>
+          <li>
+            <span>Type</span>
+            <span ng-bind="ev.evStatus"></span>
+          </li>
+          <li>
+            <span>Range</span>
+            <span ng-bind="ev.range + ' Miles'"></span>
+          </li>
+          <li>
+            <span>Capacity</span>
+            <span ng-bind="'Seats ' + ev.seatingCapacity"></span>
+          </li>
+          <li>
+            <span>0-60mph</span>
+            <span ng-bind="ev.accelerationTime + ' Seconds'"></span>
+          </li>
+          <li>
+            <span>Price</span>
+            <span ng-bind="'Starting at $' + (ev.price | number)"></span>
+          </li>
+        </ul>
+        <a class="find-a-dealer-link" href="{{ev.dealershipLink}}" target="_blank">Find a Dealer</a>
+      </div> <!-- .car-specs -->
+      <button ng-click="toggleDetails($event)" class="details-button">Show Details</button>
+    </div> <!-- .compact-list-view .layout-2 -->
+
+    <table ng-class="selectedView == 'list' ? 'current-view' : ''">
+      <thead>
+        <tr>
+          <td class="makeAndModelColumn sorting-by" ng-class="orderByOption == 'Ascending' ? 'ascending' : 'descending'" ng-click="sortElectricVehicles('makeAndModel', $event)">
+            Electric Vehicle
+            <div>
+              <a class="fa fa-chevron-up"></a>
+              <a class="fa fa-chevron-down"></a>
+            </div>
+          </td>
+          <td class="evStatusColumn" ng-class="orderByOption == 'Ascending' ? 'ascending' : 'descending'" ng-click="sortElectricVehicles('evStatus', $event)">
+            Type
+            <div>
+              <a class="fa fa-chevron-up"></a>
+              <a class="fa fa-chevron-down"></a>
+            </div>
+          </td>
+          <td class="rangeColumn" ng-class="orderByOption == 'Ascending' ? 'ascending' : 'descending'" ng-click="sortElectricVehicles('range', $event)">
+            Range
+            <div>
+              <a class="fa fa-chevron-up"></a>
+              <a class="fa fa-chevron-down"></a>
+            </div>
+          </td>
+          <td class="seatingCapacityColumn" ng-class="orderByOption == 'Ascending' ? 'ascending' : 'descending'" ng-click="sortElectricVehicles('seatingCapacity', $event)">
+            Capacity
+            <div>
+              <a class="fa fa-chevron-up"></a>
+              <a class="fa fa-chevron-down"></a>
+            </div>
+          </td>
+          <td class="accelerationTimeColumn" ng-class="orderByOption == 'Ascending' ? 'ascending' : 'descending'" ng-click="sortElectricVehicles('accelerationTime', $event)">
+            0-60mph
+            <div>
+              <a class="fa fa-chevron-up"></a>
+              <a class="fa fa-chevron-down"></a>
+            </div>
+          </td>
+          <td class="priceColumn" ng-class="orderByOption == 'Ascending' ? 'ascending' : 'descending'" ng-click="sortElectricVehicles('price', $event)">
+            Price
+            <div>
+              <a class="fa fa-chevron-up"></a>
+              <a class="fa fa-chevron-down"></a>
+            </div>
+          </td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="ev in electricVehicles">
+          <td>
+            <div class="thumbnail" ng-attr-style="
+              background-position: {{ev.spriteIconPosition}}
+            "></div> <!-- .thumbnail -->
+            <div class="make-model-and-dealer-link">
+              <span class="make-and-model" ng-bind="ev.makeAndModel"></span>
+              <a class="find-a-dealer-link" href="{{ev.dealershipLink}}" target="_blank">Find a Dealer</a>
+            </div> <!-- .makeModelAndDealerLink -->
+          </td>
+          <td ng-bind="ev.evStatus"></td>
+          <td ng-bind="ev.range"></td>
+          <td ng-bind="'Seats ' + ev.seatingCapacity"></td>
+          <td ng-bind="ev.accelerationTime + ' Seconds'"></td>
+          <td>
+            <span class="starting-at-title">Starting at</span>
+            <span ng-bind="'$' + (ev.price | number)"></span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section> <!-- .vehicle-gallery -->

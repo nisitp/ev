@@ -1,0 +1,173 @@
+// _extensions.scss
+// August 30, 2016
+// Alexander Rhett Crammer
+// Hot Sauce
+@import "mixins";
+
+%two-columns {
+  overflow: auto;
+
+  @include breakpoint($thin) {
+    > section, li {
+      float: left;
+      width: 50%;
+    }
+  }
+}
+
+%two-contained-columns {
+  overflow: auto;
+
+  > div {
+    @include container();
+    overflow: auto;
+
+    > div {
+      @include breakpoint($thin) {
+        padding: 20px 0;
+      }
+
+      &:first-of-type {
+        @include breakpoint($thin) {
+          @include grid-span(6, 1);
+        }
+      }
+
+      &:nth-of-type(2) {
+        @include breakpoint($thin) {
+          @include grid-span(6, 7);
+        }
+      }
+
+      // &:last-of-type:not(.reset) {
+      //   margin-top: 50px;
+      //   @include breakpoint($thin) {
+      //     @include grid-span(7.85, 5.15);
+      //   }
+      // }
+
+      @include breakpoint($regular) {
+        width: 454px;
+      }
+    }
+  }
+}
+
+%lists-with-icons {
+  ul {
+    list-style-type: none;
+    padding: 0;
+    padding-left: 60px;
+    position: relative;
+    width: 80%;
+
+    li {
+      font-size: 18px;
+      margin: 5px 0;
+
+      &::before {
+        background: {
+          image: url('/images/white-tiny-ev.svg');
+          position: center center;
+          repeat: no-repeat;
+          size: contain;
+        }
+        content: '';
+        display: inline-block;
+        height: 20px;
+        margin-right: 20px;
+        position: absolute;
+        left: 0;
+        vertical-align: middle;
+        width: 40px;
+      }
+    }
+  }
+}
+
+%alternate-links {
+  a, a:link, a:hover, a:focus, a:active {
+    color: $white;
+  }
+}
+
+%minimal-links {
+  a {
+    color: $text-grey;
+    cursor: pointer;
+    font-weight: 500;
+    letter-spacing: 0;
+    text: {
+      decoration: underline;
+      transform: none;
+    }
+
+    &:hover, &:focus {
+      color: lighten($red, 10%);
+    }
+
+    &:active {
+      color: darken($red, 20%);
+    }
+  }
+}
+
+%custom-list-decoration-1 {
+  position: relative;
+
+  &::before {
+    content: '\f00c';
+    color: #225b9f;
+    font: {
+      family: 'FontAwesome';
+      size: 28px;
+    }
+    position: absolute;
+    top: 0;
+    left: -50px;
+
+    @include breakpoint($thin) {
+      left: -35px;
+    }
+  }
+}
+
+%social-links {
+  a {
+    @extend .fa;
+    display: inline-block;
+    height: 25px;
+    margin: 0 5px;
+    vertical-align: middle;
+    text-align: center;
+    line-height: 25px;
+    width: 25px;
+    background: white;
+    border-radius: 50%;
+
+    &::before {
+      display:block;
+      line-height: 25px;
+    }
+
+    &.social-facebook {
+      @extend .fa-facebook;
+    }
+
+    &.social-twitter {
+      @extend .fa-twitter;
+    }
+
+    &.social-youtube {
+      @extend .fa-youtube;
+    }
+
+    &.social-instagram {
+      @extend .fa-instagram;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

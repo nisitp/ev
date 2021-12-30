@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="evRevolution" ng-controller="AppController">
+  <head>
+    <!-- Metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=1, width=device-width">
+
+    <!-- Links -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald:300,700&subset=latin">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Oswald:300,400,700">
+    <link rel="stylesheet" type="text/css" href="/bower_components/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/slick-carousel/slick/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="app.css">
+    <link rel="stylesheet" type="text/css" ng-if="extraStylesheets" ng-repeat="path in extraStylesheets" ng-href="{{path}}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700">
+
+    <!-- Angular -->
+    <base href="">
+    <link rel="icon" type="image/png" href="/images/favicon.png">
+
+    <!-- Adobe Search Discovery -->
+    <script src="//assets.adobedtm.com/b529c88e7e7aec8dcab31cf2026351aad2e6ab08/satelliteLib-6ab8357966fe847815b083f48d70480a60993803.js"></script>
+  </head>
+  <body ng-class="name">
+  	<!-- Google Tag Manager -->
+  	<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RMK3V" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  	<script type="text/javascript">
+      (function(w,d,s,l,i){
+
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0];
+      var j=d.createElement(s);
+      var dl=l!='dataLayer'?'&l='+l:'';
+      j.src='//www.googletagmanager.com/gtm.js?id='+i+dl;
+      j.type='text/javascript';
+      j.async=true;
+      f.parentNode.insertBefore(j,f);
+
+      })(window,document,'script','dataLayer','GTM-PQRP74');
+  	</script>
+  	<!-- End Google Tag Manager -->
+
+    <!-- Navigation -->
+    <ng-include class="container navigation" src="'templates/shared/navigation.html'"></ng-include>
+
+    <ng-view class="container {{name}}" autoscroll="true"></ng-view> <!-- .container -->
+
+    <!-- Footer -->
+    <ng-include class="container footer" src="'templates/shared/footer.html'"></ng-include>
+
+    <!-- Adobe Search Discovery -->
+    <script type="text/javascript">_satellite.pageBottom();</script>
+
+    <!-- Scripts -->
+    <script src="/bower_components/angular/angular.min.js"></script>
+    <script src="/bower_components/angular-route/angular-route.min.js"></script>
+    <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/bower_components/angular-ui-switch/angular-ui-switch.min.js"></script>
+    <script ng-if="extraScripts" ng-repeat="path in extraScripts" ng-src="{{path}}"></script>
+    <script src="/app.js"></script>
+    <script src="/scripts/main.js"></script>
+
+    <!-- Facebook API -->
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId: '311133642602697',
+          xfbml: true,
+          version: 'v2.8'
+        });
+        FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/en_US/sdk.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+  </body>
+</html>

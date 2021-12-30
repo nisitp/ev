@@ -1,0 +1,119 @@
+// resources.scss
+// September 8, 2016
+// Alexander Rhett Crammer
+// Hot Sauce
+@import "../init";
+
+.resources {
+  .main-header {
+    background: {
+			position: top right;
+			size: cover;
+		}
+
+    @include breakpoint($wide) {
+      background: {
+        position: top center;
+        size: contain;
+      }
+    }
+
+    h1 {
+      max-width: 2000px;
+      font-size: 44px;
+      line-height: 115px;
+
+      @include breakpoint($thin $regular) {
+        line-height: 115px;
+      }
+
+      @include breakpoint($regular) {
+        font-size: 72px;
+        line-height: 115px;
+      }
+
+      @include breakpoint($wide) {
+        line-height: 160px;
+      }
+    }
+  }
+
+  footer {
+    @include tiny-ev();
+  }
+}
+
+.additional-resources {
+  background-color: $light-grey;
+  padding: 100px 0 !important;
+
+  > div:first-of-type {
+    text-align: left;
+
+    > div {
+      @include middle-divider();
+      padding: 0;
+
+      h3 {
+        clear: both;
+        margin: 0;
+        margin-top: 10px;
+      }
+
+      &:first-of-type {
+        &::after {
+          top: 30px;
+          right: -47.5px;
+
+          @include breakpoint($wide) {
+            right: -55px;
+          }
+        }
+      }
+
+      &:last-of-type {
+        img {
+          @include grid-span(12);
+          margin-top: 40px;
+
+          @include breakpoint($thin) {
+            margin-top: 250px;
+          }
+
+          @include breakpoint($regular) {
+            margin-top: 265px;
+          }
+
+          @include breakpoint($wide) {
+            margin-top: 245px;
+          }
+        }
+      }
+    }
+  }
+
+  .car-brands {
+    @include grid-span(6);
+    margin: {
+      top: 0;
+      bottom: 0;
+    }
+
+    &:last-of-type {
+      @include grid-span(6, 7);
+    }
+  }
+
+  li {
+    margin: 40px 0;
+  }
+
+  a {
+    letter-spacing: 0;
+    text-transform: none;
+
+    &::after {
+      margin-left: 10px;
+    }
+  }
+}

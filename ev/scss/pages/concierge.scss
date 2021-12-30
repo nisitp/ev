@@ -1,0 +1,51 @@
+// concierge.scss
+// August 2016
+// Alexander Rhett Crammer
+// Hot Sauce
+@import "../init";
+
+.EVConcierge {
+	.main-header {
+		background: {
+			position: top center;
+			size: cover;
+		}
+
+		h1 {
+			font-size: 25px;
+	    line-height: 40px;
+
+			@include breakpoint($thin) {
+				font-size: 45px;
+		    line-height: 58px;
+			}
+
+			@include breakpoint($regular) {
+				font-size: 50px;
+		    line-height: 60px;
+			}
+
+			@include breakpoint($wide) {
+				font-size: 60px;
+				line-height: 80px;
+			}
+		}
+	}
+
+	.join-revolution {
+		.section-introduction {
+			@include container();
+		}
+
+		> div:first-of-type {
+			@include container();
+			padding-top: 30px;
+
+			> div:last-of-type {
+				@include breakpoint($thin) {
+					@include grid-span(5, 8);
+				}
+			}
+		}
+	}
+}

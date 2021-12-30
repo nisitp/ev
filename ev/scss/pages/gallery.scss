@@ -1,0 +1,427 @@
+// gallery.scss
+// October 20, 2016
+// Alexander Rhett Crammer
+// Hot Sauce
+@import "../init";
+
+.EVGallery {
+  .main-header {
+    background: {
+      position: center bottom;
+      size: 1210px;
+    }
+
+    @include breakpoint($thin) {
+      background-size: 1225px;
+    }
+
+    @include breakpoint($regular) {
+      background-size: 1765px;
+    }
+
+    h1 {
+      line-height: 36px;
+
+      @include breakpoint($thin) {
+        line-height: 62px;
+      }
+
+      @include breakpoint($regular) {
+        line-height: 105px;
+      }
+
+      @include breakpoint($wide) {
+        line-height: 85px;
+      }
+    }
+
+    &::before {
+      height: 60px;
+
+      @include breakpoint($thin) {
+        height: 90px;
+      }
+
+      @include breakpoint($regular) {
+        height: 135px;
+      }
+    }
+  }
+
+  .vehicle-gallery {
+    > div:first-of-type {
+      overflow: auto;
+    }
+
+    .view-toggle-options {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .sorting-and-view-options {
+      .title {
+        padding: 0;
+      }
+
+      &:last-of-type .title {
+        text-align: right;
+      }
+    }
+
+    .thumbnail {
+      @include grid-span(4, 1);
+      background: {
+        image: url('/images/icons/electric-vehicles.png');
+        repeat: no-repeat;
+        size: 580px;
+      }
+      height: 80px;
+      width: 140px;
+
+      @include breakpoint($regular) {
+        height: 100px;
+      }
+    }
+
+    .compact-list-view {
+      $compact-list-view-thin-layout-border: 2px solid grey;
+      background-color: #fff;
+      overflow: auto;
+      margin: 30px 0;
+      text-align: center;
+
+      .car-brief {
+        border: {
+          top: $compact-list-view-thin-layout-border;
+          right: $compact-list-view-thin-layout-border;
+          left: $compact-list-view-thin-layout-border;
+        }
+        padding-top: 10px;
+        padding-bottom: 15px;
+
+        .thumbnail {
+          float: none;
+          margin: auto;
+        }
+
+        .find-a-dealer-link {
+          display: none;
+        }
+
+        h3 {
+          clear: both;
+          font-size: 24px;
+          margin-top: 15px;
+          margin-bottom: 0;
+        }
+
+        &.opened {
+          border-bottom: $compact-list-view-thin-layout-border;
+        }
+      }
+
+      .car-specs {
+        border: {
+          right: $compact-list-view-thin-layout-border;
+          left: $compact-list-view-thin-layout-border;
+        }
+        color: $text-grey;
+        display: none;
+        padding: 15px 20px;
+      }
+
+      ul, li {
+        margin-top: 0;
+        overflow: auto;
+      }
+
+      ul {
+        margin-bottom: 10px;
+      }
+
+      li:last-of-type {
+        margin-bottom: 0;
+      }
+
+      span {
+        margin: {
+          top: 0;
+          bottom: 0;
+        }
+
+        &:nth-of-type(1) {
+          @include grid-span(5.5, 1);
+          clear: both;
+          text-align: right;
+        }
+
+        &:nth-of-type(2) {
+          @include grid-span(6, 7);
+          font-weight: 600;
+          text-align: left;
+        }
+      }
+
+      .find-a-dealer-link {
+        clear: both;
+      }
+
+      .details-button {
+        border-radius: 0;
+        font: {
+          size: 18px;
+          weight: 600;
+        }
+        letter-spacing: 0;
+        padding: {
+          left: 15px;
+          right: 15px;
+        }
+        position: relative;
+        text: {
+          align: left;
+          transform: none;
+        }
+        width: 100%;
+
+        &::after {
+          content: '\f078';
+          font-family: 'FontAwesome';
+          position: absolute;
+          top: 0;
+          right: 15px;
+          bottom: 0;
+          line-height: 54px;
+        }
+
+        &.opened::after {
+          content: '\f077';
+        }
+      }
+
+      .find-a-dealer-link {
+        display: block;
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      &.list-view {
+        @include breakpoint($thin) {
+          border-bottom: 1px solid grey;
+          margin: 0;
+          padding: 0 20px;
+          text-align: left;
+
+          @include breakpoint($regular) {
+            display: none;
+          }
+
+          .car-brief {
+            @include grid-span(3.5, 1);
+            border: 0;
+            padding: {
+              top: 0;
+              bottom: 0;
+            }
+
+            @include breakpoint($regular) {
+              @include grid-span(4, 1);
+            }
+
+            .thumbnail {
+              margin: 0;
+            }
+
+            .find-a-dealer-link {
+              display: block;
+            }
+
+            h3 {
+              margin-top: 25px;
+              margin-bottom: 10px;
+            }
+          }
+
+          .car-specs {
+            @include grid-span(8, 5);
+            border: 0;
+            display: block !important;
+
+            ul {
+              padding-top: 25px;
+              margin-bottom: 5px;
+            }
+
+            li {
+              @include grid-span(4);
+              float: left;
+              margin: 0;
+              margin-bottom: 20px;
+
+              &:nth-of-type(4) {
+                clear: left;
+              }
+
+              &:last-of-type {
+                // 'Price' needs more space for the
+                // wide 'Starting at $--,---' label
+                @include grid-span(6);
+              }
+            }
+
+            span {
+              display: block;
+              text-align: left;
+
+              &:nth-of-type(1) {
+                @include grid-span(12);
+              }
+
+              &:nth-of-type(2) {
+                @include grid-span(12);
+              }
+            }
+
+            .find-a-dealer-link {
+              display: none;
+            }
+          }
+
+          .details-button {
+            display: none;
+          }
+
+          .find-a-dealer-link {
+            padding-bottom: 15px;
+          }
+        }
+      }
+
+      &.grid-view {
+        @include breakpoint($thin) {
+          @include float-span(4);
+          border: $compact-list-view-thin-layout-border;
+          box-sizing: border-box;
+
+          &:nth-of-type(3n+4) {
+            margin-right: 0;
+          }
+
+          &:nth-of-type(3n+5) {
+            clear: both;
+          }
+
+          .details-button {
+            display: none;
+          }
+
+          .car-brief{
+            border: 0;
+
+            &.opened {
+              border-bottom: 0;
+            }
+          }
+
+          .car-specs {
+            border: 0;
+            display: block !important;
+          }
+        }
+      }
+    }
+
+    table {
+      display: none;
+
+      &.current-view {
+        @include breakpoint($regular) {
+          display: table;
+        }
+      }
+
+      thead {
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        .makeAndModelColumn {
+          width: 345px;
+        }
+
+        td {
+          position: relative;
+          width: 115px;
+
+          > div {
+            position: absolute;
+            top: 17px;
+            right: 20px;
+            bottom: 0;
+            height: 40px;
+            vertical-align: middle;
+          }
+
+          &.sorting-by.ascending .fa-chevron-up {
+            color: #fff;
+          }
+
+          &.sorting-by.descending .fa-chevron-down {
+            color: #fff;
+          }
+        }
+
+        a {
+          color: rgba(255, 255, 255, 0.5);
+          cursor: pointer;
+          display: block;
+
+          &:hover, &:focus {
+            text-decoration: none;
+          }
+        }
+      }
+
+      .make-model-and-dealer-link {
+        @include grid-span(6.5, 7.5);
+        height: 100px;
+
+        @include breakpoint($wide) {
+          @include grid-span(7, 6.25);
+        }
+
+        .make-and-model, .find-a-dealer-link {
+          display: block;
+          text-align: left;
+        }
+
+        .make-and-model {
+          color: $blue;
+          line-height: 30px;
+
+          @include breakpoint($wide) {
+            margin-top: 25px;
+          }
+        }
+
+        .find-a-dealer-link {
+          font: {
+            family: $main-stack;
+            weight: 500;
+          }
+          letter-spacing: 0;
+        }
+      }
+
+      .starting-at-title {
+        display: block;
+        font-size: 16px;
+      }
+    }
+  }
+}

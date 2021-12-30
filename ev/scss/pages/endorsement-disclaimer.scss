@@ -1,0 +1,29 @@
+// endorsement-disclaimer.scss
+// November 3, 2016
+// Alexander Rhett Crammer
+// Hot Sauce
+@import "../init";
+
+.endorsement-disclaimer {
+	.main-header {
+		background: {
+			position: top center;
+			size: cover;
+		}
+
+		h1 {
+			font-size: 40px;
+	    line-height: 115px;
+
+			@include breakpoint($thin) {
+				font-size: 45px;
+		    line-height: 115px;
+			}
+
+			@include breakpoint($regular) {
+				font-size: 62px;
+				line-height: 155px;
+			}
+		}
+	}
+}

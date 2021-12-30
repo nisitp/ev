@@ -1,0 +1,212 @@
+// _mixins.scss
+// August 30, 2016
+// Alexander Rhett Crammer
+// Hot Sauce
+
+@mixin clearfix() {
+  &:after {
+    content: '';
+    clear: both;
+    display: table;
+  }
+}
+
+@mixin container($with-gutter: true) {
+  margin: auto;
+
+  @if $with-gutter {
+    width: $tiny - 30px;
+  } @else {
+    width: $tiny;
+  }
+
+  @include breakpoint($thin) {
+    @if $with-gutter {
+      width: $thin - 30px;
+    } @else {
+      width: $thin;
+    }
+  }
+
+  @include breakpoint($regular) {
+    @if $with-gutter {
+      width: $regular - 30px;
+    } @else {
+      width: $regular;
+    }
+  }
+
+  @include breakpoint($wide) {
+    @if $with-gutter {
+      width: $wide - 30px;
+    } @else {
+      width: $wide;
+    }
+  }
+}
+
+@mixin cols($cols, $breakpoint, $grid, $offset: 0) {
+  @for $i from 1 through $cols {
+    $t: $i - 1;
+    &:nth-child(#{$cols}n+#{$i+$offset}) {
+      @include breakpoint($breakpoint) {
+        @include grid-span(1/$cols * $grid, $t/$cols * $grid + 1, $grid);
+      }
+    }
+  }
+}
+
+@mixin header-banner-background($color: $red) {
+  &::before {
+    background-color: $color;
+    content: '';
+    display: block;
+    position: absolute;
+    top: 30px;
+    right: 0;
+    left: 0;
+    bottom: 475px;
+    height: 150px;
+    z-index: 1;
+
+    @include breakpoint($thin) {
+      height: 170px;
+      top: 100px;
+    }
+
+    @include breakpoint($regular) {
+      height: 275px;
+    }
+  }
+
+  h1 {
+    @include container();
+    display: table;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+  }
+}
+
+@mixin middle-divider($top: 0) {
+  position: relative;
+
+  &:first-of-type::after {
+    @include breakpoint($regular) {
+      background-color: $white;
+      content: '';
+      display: block;
+      position: absolute;
+      top: $top;
+      right: -1px;
+      bottom: 0;
+      width: 2px;
+    }
+  }
+}
+
+// Every button inherits these
+@mixin primary-button($color: $blue, $text-color: $white) {
+  background-color: darken($color, 5%);
+  color: #fff;
+  cursor: pointer;
+
+  &:hover, &:focus {
+    background-color: darken($color, 15%);
+  }
+
+  &:active {
+    background-color: darken($color, 15%);
+    color: darken($text-color, 5%);
+  }
+}
+
+@mixin ribbon-background($color: $dark-blue) {
+  color: $white;
+  height: 67.5px;
+  margin: {
+    top: 33.75px;
+    bottom: 75px;
+  }
+  padding: 0;
+  line-height: 67.5px;
+  position: relative;
+
+  .banner {
+    background-color: $color;
+    content: '';
+    display: block;
+    height: 135px;
+    position: relative;
+    top: -117.5px;
+    right: 0;
+    left: -25px / 285px * 100%;
+    bottom: 0;
+    width: 300px / 255px * 100%;
+    z-index: -1;
+
+    @include breakpoint($thin) {
+      top: -100px;
+      left: -112.5px;
+      width: 665px;
+    }
+
+    @include breakpoint($regular) {
+      top: -100px;
+      left: -230px;
+      width: 900px;
+    }
+
+    @include breakpoint($wide) {
+      top: -100px;
+      left: -310px;
+      width: 1050px;
+    }
+
+    &::before, &::after {
+      content: '';
+      display: block;
+      height: 112px;
+      position: absolute;
+      bottom: -32px;
+      width: 64px;
+      z-index: -1;
+    }
+
+    &::before {
+      background-image: url('/images/ribbon-bottom-left-edge.png');
+      left: -48px;
+    }
+
+    &::after {
+      background-image: url('/images/ribbon-bottom-right-edge.png');
+      right: -48px;
+    }
+  }
+}
+
+@mixin tiny-ev() {
+  &::before {
+    @include breakpoint($thin) {
+      background: {
+        image: url('/images/tiny-ev.svg');
+        repeat: no-repeat;
+        position: center center;
+        size: contain;
+      }
+      content: '';
+      display: block;
+      height: 90px;
+      margin: auto;
+      position: absolute;
+      top: -107.5px;
+      left: 15px;
+      right: 0;
+      width: 200px;
+      z-index: 1;
+    }
+  }
+}

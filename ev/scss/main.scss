@@ -1,0 +1,626 @@
+// main.scss
+// August 29, 2016
+// Alexander Rhett Crammer
+// Hot Sauce
+@import "init";
+
+// Foundational and global styles
+html {
+  height: 100%;
+}
+
+body {
+  background-color: #eee;
+  background: {
+    position: center top;
+    size: cover;
+    repeat: no-repeat;
+  }
+  color: $white;
+  font-family: $main-stack;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: $blue;
+}
+
+h1 {
+  color: $white;
+  font-family: 'Oswald', $main-stack;
+  letter-spacing: 1px;
+  line-height: 135%;
+  text-transform: uppercase;
+}
+
+h2, h3 {
+  font-family: 'Oswald';
+}
+
+h2 {
+  font-size: 34px;
+  text-transform: uppercase;
+}
+
+h3 {
+  font: {
+    size: 20px;
+    weight: 500;
+  }
+  line-height: 26px;
+
+  @include breakpoint($thin) {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  @include breakpoint($regular) {
+    font-size: 30px;
+    line-height: 36px;
+  }
+}
+
+.page-background {
+  background: {
+    image: url('/images/action-city.png');
+    position: center center;
+    size: cover;
+  }
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  z-index: -15;
+}
+
+.section-introduction {
+  border: {
+    top: 2px solid $white;
+    bottom: 2px solid $white;
+  }
+  display: inline-block;
+  font-size: 24px;
+  line-height: 36px;
+  margin: auto;
+  padding: 10px;
+  position: relative;
+  text-align: center;
+
+  span {
+    color: $lime;
+  }
+
+  @include breakpoint($regular) {
+    font-size: 32px;
+    line-height: 40px;
+  }
+}
+
+button {
+  @include primary-button();
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  font: {
+    family: $main-stack;
+    weight: 100;
+  }
+  letter-spacing: 3px;
+  padding: 15px 25px;
+  text: {
+    decoration: none;
+    transform: uppercase;
+  }
+  transition: background-color 125ms;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+li {
+  font: {
+    size: 18px;
+    weight: 400;
+  }
+  margin: 8px 0;
+}
+
+a {
+  color: $red;
+  font: {
+    size: 18px;
+    weight: 700;
+  }
+  letter-spacing: 0.05rem;
+  text: {
+    decoration: none;
+    transform: uppercase;
+  }
+  transition: color 115ms;
+
+  &:hover, &:focus {
+    text-decoration: underline;
+  }
+
+  &.detour-link {
+    position: relative;
+  }
+
+  &.detour-link::after {
+    content: '\f054';
+    font-family: 'FontAwesome';
+    padding-left: 5px;
+    position: absolute;
+    top: 5px;
+    vertical-align: middle;
+  }
+}
+
+.button {
+  background-color: $red;
+  color: #fff;
+  cursor: pointer;
+  border-radius: 0;
+  padding: 15px 30px;
+  text-align: center;
+  text-decoration: none;
+
+  &:hover {
+    background-color: darken($red, 15%);
+    text-decoration: none;
+  }
+
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+p {
+  font: {
+    size: 16px;
+    weight: 400;
+  }
+  line-height: 26px;
+
+  @include breakpoint($regular) {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+input, textarea, label, .title {
+  border: 0;
+  color: $text-grey;
+  font: {
+    family: $main-stack;
+    size: 18px;
+  }
+  padding: 13px 30px;
+}
+
+footer {
+  // background-color: lighten($blue, 5%);
+  background-color: $light-grey;
+  border-top: 20px solid darken($bright-blue, 2.5%);
+  clear: both;
+  color: $white;
+  position: relative;
+
+  nav {
+    @extend %alternate-links;
+    @include add-grid(12 at $regular);
+    overflow: auto;
+
+    @include breakpoint($thin $regular) {
+      padding-bottom: 15px;
+    }
+
+    ul {
+      list-style-type: none;
+      margin: 0;
+
+      @include breakpoint($regular) {
+        @include grid-span(11);
+        line-height: 100px;
+      }
+    }
+
+    li {
+      display: block;
+      margin: 20px 0;
+      padding-right: 40px;
+
+      @include breakpoint($thin) {
+        display: inline-block;
+        margin: 0;
+        padding-right: 25px;
+      }
+    }
+  }
+
+  > div {
+    overflow: auto;
+
+    > section {
+      @include container();
+
+      h2 {
+        @include add-grid(12 at $regular);
+        @include add-gutter(1/1.75 at $regular);
+        @include grid-span(1.5, 1.25, 2);
+        font-size: 24px;
+        line-height: 36px;
+        margin-top: 0;
+        margin-bottom: 0;
+        text-align: center;
+
+        @include breakpoint($thin) {
+          @include grid-span(1.75, 1, 6);
+          text-align: left;
+          width: 200px !important;
+        }
+
+        @include breakpoint($regular) {
+          font-size: 32px;
+          line-height: 40px;
+          width: 250px !important;
+        }
+      }
+    }
+
+    &#call-to-action-container {
+      background-color: $bright-blue;
+      padding: 40px 0;
+
+      @include breakpoint($thin) {
+        padding: 60px 0 55px;
+      }
+
+      > section {
+        overflow: hidden;
+      }
+
+      h2 {
+        color: $white;
+        float: left;
+        margin-top: 0;
+        border-top: 2px solid $white;
+        border-bottom: 2px solid $white;
+        letter-spacing: 1px;
+        padding: 15px 0;
+        width: 275px;
+
+        @include breakpoint($below-thin) {
+          float: none;
+          margin: auto;
+        }
+
+        span {
+          color: $lime;
+        }
+      }
+
+      .form-content {
+        clear: both;
+
+        @include breakpoint($thin) {
+          @include grid-span(4, 3, 6);
+        }
+
+        @include breakpoint($regular) {
+          @include grid-span(8.5, 4.5, 12);
+        }
+
+        p {
+          @include grid-span(2, 1, 2);
+          color: $white;
+          font: {
+            size: 16px;
+            weight: 300;
+          }
+          line-height: 26px;
+          margin: 30px auto;
+
+          @include breakpoint($thin) {
+            margin: 0 auto;
+            text-align: left;
+          }
+
+          &.newsletter-success-message {
+            margin-bottom: 0;
+
+            @include breakpoint($thin) {
+              padding: 30px 0;
+            }
+
+            @include breakpoint($wide) {
+              padding: 45px 0;
+            }
+          }
+        }
+
+        form {
+          clear: both;
+          position: relative;
+          width: 100%;
+
+          @include breakpoint($thin) {
+            padding-top: 10px;
+          }
+
+          @include breakpoint($regular) {
+            margin-top: 50px;
+          }
+
+          .error-block {
+	          color: $red;
+            font-weight: 600;
+	          top: 70px;
+          }
+        }
+
+        input, button {
+          height: 50px;
+        }
+
+        input {
+          @include grid-span(2, 1, 2);
+          border-radius: 0;
+          box-sizing: border-box;
+
+          @include breakpoint($thin) {
+            @include grid-span(2.5, 1, 4);
+          }
+
+          @include breakpoint($regular) {
+            @include grid-span(6, 1, 9);
+          }
+        }
+
+        button, [type="submit"]  {
+          @include primary-button($red);
+          @include grid-span(2, 1, 2);
+          border-radius: 0;
+          display: block;
+          height: 50px;
+          line-height: 0;
+          font: {
+            size: 18px;
+            weight: 600;
+          }
+          letter-spacing: 0;
+          margin-top: 30px;
+          padding: 0;
+
+          @include breakpoint($thin) {
+            @include grid-span(1.375, 3.65, 4);
+            margin-top: 0;
+          }
+
+          @include breakpoint($regular) {
+            @include grid-span(4, 9);
+          }
+        }
+      }
+    }
+
+    &#footer-sitemap {
+      background-color: $dark-grey;
+      padding: 5px 0 30px;
+
+      @include breakpoint($below-thin) {
+        display: none;
+      }
+
+      @include breakpoint($thin) {
+        padding: 30px 0 25px;
+      }
+
+      @include breakpoint($regular) {
+        padding: 30px 0;
+      }
+
+      > section {
+        @include add-grid(6 at 500px);
+        overflow: hidden;
+
+        @include breakpoint($regular) {
+          min-height: 100px;
+          overflow: hidden;
+          position: relative;
+        }
+
+        &::after {
+          @include breakpoint($regular) {
+            background: {
+              image: url('/images/logos/southern-company-horizontal.svg');
+              repeat: no-repeat;
+              position: center right;
+              size: 270px;
+            }
+            content: '';
+            display: block;
+            height: 100px;
+            position: absolute;
+            right: 0;
+            bottom: -25px;
+            width: 275px;
+          }
+        }
+
+        nav {
+          &:nth-of-type(1) {
+            @include grid-span(2, 1, 6);
+
+            @include breakpoint($regular) {
+              @include grid-span(3, 1, 12);
+            }
+          }
+
+          &:nth-of-type(2) {
+            @include grid-span(2, 3, 6);
+
+            @include breakpoint($regular) {
+              @include grid-span(3, 4, 12);
+            }
+          }
+
+          &:nth-of-type(3) {
+            @include grid-span(2, 5, 6);
+
+            @include breakpoint($regular) {
+              @include grid-span(3, 7, 12);
+            }
+          }
+        }
+
+        img {
+          clear: both;
+        }
+
+        h4 {
+          color: $white;
+          font: {
+            size: 16px;
+            weight: bold;
+          }
+          margin: 0;
+          margin-bottom: 10px;
+          text-transform: uppercase;
+        }
+
+        li {
+          display: block;
+          line-height: normal;
+        }
+
+        a {
+          font: {
+            size: 14px;
+            weight: 300;
+          }
+          text-transform: none;
+        }
+      }
+
+      .mobile-logo {
+        @include grid-span(12);
+        margin: 5px auto 0;
+
+        @include breakpoint($thin) {
+          @include grid-span(4);
+          clear: both;
+          float: none;
+          display: block;
+          margin: auto;
+        }
+
+        @include breakpoint($regular) {
+          display: none;
+        }
+      }
+
+      .social-links {
+      	@extend %social-links;
+      	color: $white;
+        clear: both;
+        padding: 25px 0 0;
+        margin-bottom: 0;
+        text-align: center;
+
+        @include breakpoint($thin) {
+          @include grid-span(12, 1, 12);
+          font-size: 12px;
+          margin-top: 0;
+          padding-top: 15px;
+          text-align: center;
+        }
+
+        @include breakpoint($regular) {
+          display: none;
+        }
+
+        a {
+          color: $dark-grey;
+          margin: 0 7.5px;
+        }
+      }
+    }
+
+    &#sub-footer {
+      background-color: #3d3d3d;
+      padding: 15px 0;
+
+      color: $white;
+      font: {
+        size: 10px;
+        weight: 800;
+      }
+      line-height: 18px;
+      text-align: center;
+
+  	  div#legalese {
+  	    @include breakpoint($regular) {
+	        text-align: left;
+          @include grid-span(9, 1, 12);
+        }
+
+        a {
+          font-size: 1em;
+          color: white;
+          text-transform: none;
+          letter-spacing: normal;
+        }
+      }
+
+      div.social-links {
+        @extend %social-links;
+	      display: none;
+
+        a {
+          color: #3d3d3d;
+        }
+
+	      @include breakpoint($regular) {
+          @include grid-span(3, 10, 12);
+          display: block;
+	        text-align: right;
+	      }
+	    }
+    }
+  }
+
+  .hype-feedback-form {
+    background-color: $light-grey;
+
+    > div:first-of-type {
+      @include container();
+      padding: 40px 0;
+
+      @include breakpoint($wide) {
+        width: 100%;
+      }
+
+      @include breakpoint($thin) {
+        padding: 50px 0 0;
+      }
+    }
+  }
+}
+
+#HypeWrapper {
+  margin: auto;
+  max-width: 400px;
+
+  @include breakpoint($thin) {
+    max-width: 990px !important;
+  }
+}

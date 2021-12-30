@@ -1,0 +1,72 @@
+<nav class="main-navigation">
+  <div>
+    <h1><a href="/#/">The R<span>ev</span>olution</a></h1>
+    <ul class="navigation-links">
+      <div>
+        <li ng-repeat="link in links">
+          <a ng-bind="link.title" ng-click="updateCurrentNavigationChoice(link.identifier);pushSubnavigationList(link.identifier)" ng-class="
+            (currentNavigationChoice == link.identifier && link.subnavigationLinks != undefined) ? 'current-navigation-choice' : ''
+          "></a>
+          <div ng-if="link.subnavigationLinks" class="mobile-subnavigation-links" ng-class="link.identifier + '-subnavigation-list'">
+            <ul>
+              <li><a ng-bind="link.title" ng-click="dismissSubnavigationLists()" class="escape-link"></a></li>
+              <li ng-repeat="subnavigationLink in link.subnavigationLinks">
+                <a ng-bind="subnavigationLink.title" ng-href="{{subnavigationLink.path}}" ng-click="hideMobileMenu(0);dismissSubnavigationLists();(subnavigationLink.jumps) ? animateTo(subnavigationLink.destinationID, subnavigationLink.path) : ''"></a>
+              </li>
+            </ul>
+          </div> <!-- .mobile-subnavigation-links -->
+        </li>
+        <li><button ng-click="toggleFeedbackForm()" ng-class="(revealingFeedbackForm) ? 'opened' : ''">Give Feedback</button></li>
+      </div>
+    </ul>
+    <a class="mobile-menu" ng-click="toggleMobileMenu()">Menu <span class="fa" ng-class="(revealingMobileMenu) ? 'fa-chevron-down' : 'fa-chevron-right'"></span></a>
+  </div>
+  <div ng-repeat="link in links" ng-if="link.subnavigationLinks" ng-show="currentNavigationChoice == link.identifier" class="subnavigation-links">
+    <ul>
+      <li ng-repeat="subnavigationLink in link.subnavigationLinks">
+        <a ng-bind="subnavigationLink.title" ng-href="{{subnavigationLink.path}}" ng-click="updateCurrentNavigationChoice('');(subnavigationLink.jumps) ? animateTo(subnavigationLink.destinationID, subnavigationLink.path) : ''"></a>
+      </li>
+    </ul>
+  </div> <!-- .subnavigation-link-container -->
+</nav>
+
+<form ng-controller="FeedbackFormController" ng-show="revealingFeedbackForm" name="feedbackForm" ng-model="feedbackForm" class="feedback-form" ng-class="successfullySubmitted ? 'successfully-submitted' : ''" method="post" novalidate>
+  <div>
+    <span class="fa fa-close" ng-click="toggleFeedbackForm()"></span>
+    <div>
+      <h3>Share Your Thoughts</h3>
+      <p>We love hearing from you! Your feedback helps us improve this site. Tell us what you would like to learn more about or what information was most helpful, and we&apos;ll do our best to make this site even more useful.</p>
+      <input type="text" name="firstName" placeholder="Name" ng-model="firstName" ng-required="true">
+      <span ng-show="
+        feedbackForm.firstName.$error.required
+        && feedbackForm.$submitted
+      " class="error-message">Name Required</span>
+      <input type="email" name="email" ng-model="email" placeholder="Email" ng-required="true" ng-pattern="emailPattern">
+      <span ng-show="
+        feedbackForm.email.$error.required != true
+        && feedbackForm.email.$invalid
+        && feedbackForm.$submitted
+      " class="error-message">Invalid Email Address</span>
+      <span ng-show="
+        feedbackForm.email.$error.required
+        && feedbackForm.$submitted
+      " class="error-message">Email Address Required</span>
+    </div>
+    <div>
+      <textarea name="message" rows="9" cols="40" placeholder="Type your message here..." ng-model="message" ng-required="true"></textarea>
+      <span ng-show="
+      feedbackForm.message.$error.required
+        && feedbackForm.$submitted
+      " class="error-message">Message Required</span>
+      <label>
+        <input type="checkbox" name="wants_subscription" ng-model="wantsSubscription" value="1">
+        <span class="title">Sign me up for the latest news from the REVolution.</span>
+      </label>
+      <input class="submit-button" type="submit" name="Submit" value="Submit" ng-click="submitForm();scrollToSuccessMessage('.navigation .feedback-form')">
+    </div>
+    <div ng-show="successfullySubmitted" class="submission-confirmation-message">
+      <h3>Thank you for your feedback</h3>
+      <p>Your feedback is valuable to us as we make this rEVolution together!</p>
+    </div> <!-- .submission-confirmation-message -->
+  </div>
+</form>

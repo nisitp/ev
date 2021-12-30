@@ -1,0 +1,20 @@
+// _init.scss
+// August 29, 2016
+// Alexander Rhett Crammer
+// Hot Sauce
+
+// Breakpoint and Singularity
+@import "../bower_components/breakpoint-sass/stylesheets/breakpoint";
+@import "../bower_components/singularity/stylesheets/singularitygs";
+
+// Font Awesome
+@import "../bower_components/fontawesome/scss/font-awesome";
+
+// Everything else
+@import "partials/preferences";
+@import "partials/buttons";
+@import "partials/extensions";
+@import "partials/fonts";
+@import "partials/mixins";
+
+@include sgs-change('debug', true);

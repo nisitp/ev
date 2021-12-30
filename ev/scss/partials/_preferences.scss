@@ -1,0 +1,36 @@
+// _preferences.scss
+// August 29, 2016
+// Alexander Rhett Crammer
+// Hot Sauce
+
+// Show all the things that are hidden in production
+$debug: true;
+
+// Colors
+$white: #f5fbfe;
+$red: #ec1c24;
+$bright-blue: #00bcf1;
+$blue: #007db9;
+$slightly-dark-blue: #0884be;
+$dark-blue: #086caa;
+$lime: #b2d235;
+$light-grey: #e7e7e7;
+$grey: #929292;
+$dark-grey: #4d4d4d;
+$text-grey: #626262;
+
+// Font stacks
+$main-stack: 'Open Sans', 'Source Sans Pro', 'Source Sans', 'Helvetica Neue', 'Helvetica', sans-serif;
+$secondary-stack: 'Oswald', $main-stack;
+
+// Sizes
+$tiny: 320px;
+$thin: 768px;
+$regular: 1023px;
+$wide: 1200px;
+$too-big: 1800px;
+
+$below-tiny: max-width $tiny;
+$below-thin: max-width $thin;
+$below-regular: max-width $regular;
+$below-wide: max-width $wide;

@@ -1,0 +1,13 @@
+// _fonts.scss
+// August 29, 2016
+// Alexander Rhett Crammer
+// Hot Sauce
+
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("/fonts/FontAwesome.eot");
+  src: url("/fonts/FontAwesome.svg") format("embedded-opentype"),
+       url("/fonts/FontAwesome.ttf") format("woff"),
+       url("/fonts/FontAwesome.woff") format("truetype"),
+       url("/fonts/FontAwesome.woff2") format("svg");
+}

@@ -1,0 +1,32 @@
+{
+  "name": "ev",
+  "description": "",
+  "main": "gulpfile.js",
+  "authors": [
+    "Alexander Rhett Crammer <alexander@hotsaucestudios.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/Arcrammer/My-EV-Revolution",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-route": "^1.5.8",
+    "breakpoint-sass": "^2.7.0",
+    "foundation": "^5.5.3",
+    "jquery": "^3.1.0",
+    "singularity": "^1.7.0",
+    "angular": "^1.5.8",
+    "sassy-maps": "^0.4.0",
+    "fontawesome": "~4.6.3"
+  },
+  "devDependencies": {
+    "angular-ui-switch": "^0.1.1",
+    "matchHeight": "^0.7.0",
+    "slick-carousel": "^1.6.0"
+  }
+}
